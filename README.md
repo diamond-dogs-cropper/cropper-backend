@@ -1,1 +1,29 @@
 # cropper-backend
+
+Бэкенд Cropper: FastAPI, PostgreSQL, MinIO.
+
+## Запуск
+
+Нужны Python 3.12+, uv, PostgreSQL и MinIO.
+
+```bash
+uv sync
+cp .env.example .env
+uv run alembic upgrade head
+uv run uvicorn app.main:app --reload
+```
+
+`/health` проверяет базу и MinIO, Swagger на `/docs`.
+
+## Настройки
+
+Переменные окружения или `.env`, список в `.env.example`.
+
+## Миграции
+
+```bash
+uv run alembic revision --autogenerate -m "add users"
+uv run alembic upgrade head
+```
+
+Новые модели импортируйте в `migrations/env.py`, иначе автогенерация их не увидит.
